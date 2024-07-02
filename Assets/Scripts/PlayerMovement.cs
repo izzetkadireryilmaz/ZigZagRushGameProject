@@ -10,13 +10,15 @@ public class PlayerMovement : MonoBehaviour
     public PlaceSpawner SpawnerScript;
     public static bool fall;
     public float AddSpeed;
-    public GameObject yourObjectToActivate;
+    public GameObject DeadCanvas;
+    public GameObject GameCanvas;
 
     void Start()
     {
         direction = Vector3.forward;
         fall = false;
-        yourObjectToActivate.SetActive(false);
+        DeadCanvas.SetActive(false);
+        GameCanvas.SetActive(true);
     }
 
 
@@ -25,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y < 0.4f)
         {
             fall = true;
-            yourObjectToActivate.SetActive(true);
+            DeadCanvas.SetActive(true);
+            GameCanvas.SetActive(false);
         }
 
         if (fall == true)
@@ -47,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
             speed += AddSpeed + Time.deltaTime;
         }
+
     }
 
     private void FixedUpdate()
